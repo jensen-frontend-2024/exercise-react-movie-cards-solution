@@ -1,0 +1,28 @@
+.add-movie {
+  display: flex;
+  gap: 1rem;
+
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: fit-content;
+}
+
+.add-movie .left-pane,
+.add-movie .right-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.add-movie .right-pane .rating-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+
+.add-movie .action-buttons {
+  display: flex;
+  justify-content: space-between;
+}
