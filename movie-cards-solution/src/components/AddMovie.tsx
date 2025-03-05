@@ -1,22 +1,26 @@
-import { FormEventHandler, ReactElement, useRef } from 'react';
+import { FormEventHandler, ReactElement, useContext, useRef } from 'react';
+import { IMovie, MovieContext } from '../context/MovieContextProvider';
+import { v4 as uuidv4 } from 'uuid';
 
 export function AddMovie(): ReactElement {
   const titleRef = useRef<HTMLInputElement>(null);
   const ratingRef = useRef<HTMLInputElement>(null);
   const genreRef = useRef<HTMLSelectElement>(null);
   const descRef = useRef<HTMLTextAreaElement>(null);
+  const { addMovie } = useContext(MovieContext);
 
   const handleOnSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
-    const formData = {
-      title: titleRef.current?.value,
-      rating: ratingRef.current?.value,
-      genre: genreRef.current?.value,
-      description: descRef.current?.value,
+    const newMovie: IMovie = {
+      id: uuidv4(),
+      title: titleRef.current?.value || 'No Title',
+      rating: ratingRef.current?.value || '3',
+      genre: genreRef.current?.value || 'No Genre',
+      description: descRef.current?.value || 'Lorem Ipsum...',
     };
 
-    console.log(formData);
+    addMovie(newMovie);
   };
 
   return (

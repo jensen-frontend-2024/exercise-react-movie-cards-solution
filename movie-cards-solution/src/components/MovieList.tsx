@@ -1,15 +1,19 @@
-import { ReactElement } from 'react';
+import { ReactElement, useContext } from 'react';
 import { MovieCard } from './MovieCard';
+import { MovieContext } from '../context/MovieContextProvider';
 
 export function MovieList(): ReactElement {
+  const { movies } = useContext(MovieContext);
+
+  if (movies.length === 0) {
+    return <section className="movie-list">No movies...</section>;
+  }
+
   return (
     <section className="movie-list">
-      <MovieCard
-        description="Ipsum magna sint quis sunt dolore anim velit nisi cillum. Nulla et reprehenderit mollit dolor sit elit ut ut eu. Ut aute voluptate tempor qui commodo."
-        genre="Drama"
-        rating="4"
-        title="Lorem Ipsum"
-      />
+      {movies.map((m) => (
+        <MovieCard movie={m} key={m.id} />
+      ))}
     </section>
   );
 }

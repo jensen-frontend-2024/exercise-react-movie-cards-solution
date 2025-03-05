@@ -1,23 +1,23 @@
-import { ReactElement } from 'react';
+import { ReactElement, useContext } from 'react';
+import { IMovie, MovieContext } from '../context/MovieContextProvider';
 
 interface IMovieCardProps {
-  title: string;
-  rating: string;
-  genre: string;
-  description: string;
+  movie: IMovie;
 }
 
-export function MovieCard({ title, rating, genre, description }: IMovieCardProps): ReactElement {
+export function MovieCard({ movie }: IMovieCardProps): ReactElement {
+  const { deleteMovie } = useContext(MovieContext);
+
   return (
-    <article className="movie-card">
+    <article className="movie-card" onClick={() => deleteMovie(movie.id)}>
       <div className="title-row">
-        <span className="title">{title}</span>
-        <span className="rating">{rating}/5</span>
+        <span className="title">{movie.title}</span>
+        <span className="rating">{movie.rating}/5</span>
       </div>
       <div className="genre-row">
-        <span className="genre">{genre}</span>
+        <span className="genre">{movie.genre}</span>
       </div>
-      <p className="description">{description}</p>
+      <p className="description">{movie.description}</p>
     </article>
   );
 }
