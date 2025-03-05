@@ -12,7 +12,11 @@ export function AddMovie(): ReactElement {
     const formData = {
       title: titleRef.current?.value,
       rating: ratingRef.current?.value,
+      genre: genreRef.current?.value,
+      description: descRef.current?.value,
     };
+
+    console.log(formData);
   };
 
   return (

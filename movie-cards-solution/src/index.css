@@ -1,4 +1,6 @@
 @import url('./components/AddMovie.css');
+@import url('./components/MovieCard.css');
+@import url('./components/MovieList.css');
 
 * {
   box-sizing: border-box;
